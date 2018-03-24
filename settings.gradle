@@ -1,0 +1,4 @@
+rootProject.name = 'pdp-services'
+
+include 'config-services'
+
