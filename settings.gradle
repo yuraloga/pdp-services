@@ -1,4 +1,6 @@
 rootProject.name = 'pdp-services'
 
-include 'config-services'
-
+include 'config-service'
+include 'discovery-service'
+include 'gateway-service'
+include 'ecar-service'
