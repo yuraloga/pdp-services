@@ -1,0 +1,55 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.yuraloga'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+
+ext {
+    springCloudVersion = 'Finchley.M9'
+}
+
+dependencies {
+	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+	compile('org.springframework.cloud:spring-cloud-starter-config')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+jar {
+	baseName = project.name
+	version =  project.version
+}
+
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Main-Class': 'com.yuraloga.configservice.ConfigServiceApplication'
+	}
+	baseName = project.name
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
+}
