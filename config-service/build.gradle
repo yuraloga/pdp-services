@@ -11,7 +11,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
@@ -24,21 +23,32 @@ repositories {
 	maven { url "https://repo.spring.io/milestone" }
 }
 
-
 ext {
 	springCloudVersion = 'Finchley.M9'
 }
 
 dependencies {
-//	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.cloud:spring-cloud-config-server')
-	compile ('org.springframework.cloud:spring-cloud-config-monitor')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.springframework.security:spring-security-test')
+	compile('org.springframework.cloud:spring-cloud-starter-eureka:1.4.4.RELEASE')
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+jar {
+	baseName = project.name
+	version =  project.version
+}
+
+task fatJar(type: Jar) {
+	manifest {
+		attributes 'Main-Class': 'com.yuraloga.configservice.ConfigServiceApplication'
+	}
+	baseName = project.name
+	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
 }
