@@ -6,8 +6,18 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
+		classpath('org.hsqldb:hsqldb:2.3.4')
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
+}
+
+plugins {
+	id "org.flywaydb.flyway" version "4.1.2"
+}
+
+flyway {
+	url = 'jdbc:hsqldb:hsql://localhost/ecardb'
+	user = 'sa'
 }
 
 apply plugin: 'java'
