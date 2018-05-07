@@ -1,6 +1,6 @@
 CREATE TABLE automobile_manufacturer_logo (
   id            SERIAL PRIMARY KEY,
-  content       BLOB,
+  content       BYTEA,
   image_url     VARCHAR(255) NOT NULL
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE photo (
   id                         SERIAL PRIMARY KEY,
   photoset_id                INT NOT NULL,
   name                       VARCHAR(255) NOT NULL,
-  content                    BLOB,
+  content                    BYTEA,
   image_url                  VARCHAR(255) NOT NULL,
   FOREIGN KEY (photoset_id) REFERENCES photoset(id)
 );
@@ -33,10 +33,10 @@ CREATE TABLE car_specification (
   number_of_doors_seats                       VARCHAR(255),
   equipped_weight                             VARCHAR(255),
   gross_vehicle_weight                        VARCHAR(255),
-  aerodynamic_resistance_coef                 DOUBLE,
+  aerodynamic_resistance_coef                 DECIMAL,
   maximum_speed                               VARCHAR(255),
   acceleration_to100                          VARCHAR(255),
-  minimum_turning_radius                      DOUBLE,
+  minimum_turning_radius                      DECIMAL,
   trunk_volume_min_max                        VARCHAR(255),
 -- dimentions
   length                                      INT,
@@ -48,8 +48,8 @@ CREATE TABLE car_specification (
 -- engine
   engine_type                                 VARCHAR(255),
   location                                    VARCHAR(255),
-  volume                                      DOUBLE,
-  compression_ratio                           DOUBLE,
+  volume                                      DECIMAL,
+  compression_ratio                           DECIMAL,
   number_and_arrangement_of_cylinders         VARCHAR(255),
   cylinder_diameter_and_stoke_of_the_piston   VARCHAR(255),
   number_of_valves                            INT,
@@ -72,7 +72,7 @@ CREATE TABLE car_specification (
   country_cycle                               VARCHAR(255),
   mixed_cycle                                 VARCHAR(255),
   fuel_type                                   VARCHAR(255),
-  fuel_tank_capacity                          DOUBLE,
+  fuel_tank_capacity                          DECIMAL,
 -- ecological characteristics
   emissions_of_CO2                            VARCHAR(255),
   environmental_class                         VARCHAR(255),
