@@ -16,8 +16,9 @@ plugins {
 }
 
 flyway {
-	url = 'jdbc:hsqldb:hsql://localhost/ecardb'
-	user = 'sa'
+	url = 'jdbc:postgresql://192.168.99.100:5432/test'
+	user = 'root'
+	password = 'root'
 }
 
 apply plugin: 'java'
