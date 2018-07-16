@@ -1,9 +1,10 @@
-package com.yuraloga.ecarservice.service;
+package com.yuraloga.ecarservice.service.impl;
 
 import com.yuraloga.ecarservice.controller.request.CarSpecificationRequest;
 import com.yuraloga.ecarservice.dao.CarSpecificationDao;
 import com.yuraloga.ecarservice.exceptions.NotFoundException;
 import com.yuraloga.ecarservice.model.CarSpecification;
+import com.yuraloga.ecarservice.service.CarSpecificationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

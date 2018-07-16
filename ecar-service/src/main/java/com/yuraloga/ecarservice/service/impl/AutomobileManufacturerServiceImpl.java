@@ -1,7 +1,8 @@
-package com.yuraloga.ecarservice.service;
+package com.yuraloga.ecarservice.service.impl;
 
 import com.yuraloga.ecarservice.dao.AutomobileManufacturerDao;
 import com.yuraloga.ecarservice.model.AutomobileManufacturer;
+import com.yuraloga.ecarservice.service.AutomobileManufacturerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

@@ -1,8 +1,9 @@
-package com.yuraloga.ecarservice.service;
+package com.yuraloga.ecarservice.service.impl;
 
 import com.yuraloga.ecarservice.dao.PhotoDao;
 import com.yuraloga.ecarservice.exceptions.NotFoundException;
 import com.yuraloga.ecarservice.model.Photo;
+import com.yuraloga.ecarservice.service.PhotoService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
