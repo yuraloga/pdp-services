@@ -6,7 +6,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath('org.hsqldb:hsqldb:2.3.4')
+		classpath('org.postgresql:postgresql:42.2.2')
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
@@ -41,9 +41,13 @@ ext {
 }
 
 dependencies {
+    compile('org.hibernate:hibernate-core:5.3.2.Final')
+    compile('org.hibernate:hibernate-entitymanager:5.3.2.Final')
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+
+    compile('org.springframework.data:spring-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-jdbc')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
 	compile('org.postgresql:postgresql:42.2.2')

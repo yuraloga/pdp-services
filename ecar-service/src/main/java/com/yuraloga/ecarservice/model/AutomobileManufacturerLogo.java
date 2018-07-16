@@ -1,33 +1,18 @@
 package com.yuraloga.ecarservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-import java.sql.Blob;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
 
-/**
- * Created by yura on 4/1/17.
- */
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Data
-public class AutomobileManufacturerLogo {
+@Entity
+public class AutomobileManufacturerLogo implements Serializable {
+    @Id
     private Integer id;
-    private Blob content;
+    private byte[] content;
     private String imageUrl;
-
-    public AutomobileManufacturerLogo() {
-    }
-
-    public AutomobileManufacturerLogo(Integer id, Blob content, String imageUrl) {
-        this.id = id;
-        this.content = content;
-        this.imageUrl = imageUrl;
-    }
-
-    public AutomobileManufacturerLogo(Blob content, String imageUrl) {
-        this.content = content;
-        this.imageUrl = imageUrl;
-    }
-
-    public AutomobileManufacturerLogo(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

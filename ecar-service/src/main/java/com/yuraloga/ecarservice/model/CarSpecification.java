@@ -1,14 +1,24 @@
 package com.yuraloga.ecarservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
-/**
- * Created by yura on 4/1/17.
- */
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Data
-public class CarSpecification {
+@Entity
+public class CarSpecification implements Serializable {
+    @Id
     private Integer id;
-    private Integer automobileManufacturerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "automobile_manufacturer_id",
+        referencedColumnName = "id"
+    )
+    private AutomobileManufacturer automobileManufacturer;
     // General information
     private String modelName;
     private String year;
@@ -16,10 +26,10 @@ public class CarSpecification {
     private String numberOfDoorsSeats;
     private String equippedWeight;
     private String grossVehicleWeight;
-    private Double aerodynamicResistanceCoef;
+    private BigDecimal aerodynamicResistanceCoef;
     private String maximumSpeed;
     private String accelerationTo100;
-    private Double minimumTurningRadius;
+    private BigDecimal minimumTurningRadius;
     private String trunkVolumeMinMax;
     // dimentions
     private Integer length;
@@ -31,8 +41,8 @@ public class CarSpecification {
     // engine
     private String engineType;
     private String location; // enum
-    private Double volume;
-    private Double compressionRatio;
+    private BigDecimal volume;
+    private BigDecimal compressionRatio;
     private String numberAndArrangementOfCylinders;
     private String cylinderDiameterAndStokeOfThePiston;
     private Integer numberOfValves;
@@ -59,12 +69,18 @@ public class CarSpecification {
     private String countryCycle;
     private String mixedCycle;
     private String fuelType;
-    private Double fuelTankCapacity;
+    private BigDecimal fuelTankCapacity;
 
     // ecological characteristics
+    @Column(name = "emissions_of_co2")
     private String emissionsOfCO2;
     private String environmentalClass;
 
     // album
-    private Integer photoSetId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "photoset_id",
+        referencedColumnName = "id"
+    )
+    private PhotoSet photoSet;
 }

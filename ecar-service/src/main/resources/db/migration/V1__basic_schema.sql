@@ -9,7 +9,7 @@ CREATE TABLE automobile_manufacturer (
   name VARCHAR(255) NOT NULL,
   logo_id INT,
   CONSTRAINT UK_name UNIQUE (name),
-  CONSTRAINT FK_logo FOREIGN KEY (logo_id) REFERENCES automobile_manufacturer_logo(id)
+  CONSTRAINT FK_logo FOREIGN KEY (logo_id) REFERENCES automobile_manufacturer_logo(id) ON DELETE CASCADE
 );
 CREATE TABLE photoset (
   id   SERIAL PRIMARY KEY,
@@ -79,5 +79,5 @@ CREATE TABLE car_specification (
 -- album
   photoset_id                                 INT,
   FOREIGN KEY (automobile_manufacturer_id) REFERENCES automobile_manufacturer(id),
-  FOREIGN KEY (photoset_id) REFERENCES photoset(id)
+  FOREIGN KEY (photoset_id) REFERENCES photoset(id) ON DELETE CASCADE
 );

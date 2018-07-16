@@ -1,15 +1,10 @@
 package com.yuraloga.ecarservice.dao;
 
 import com.yuraloga.ecarservice.model.AutomobileManufacturer;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-/**
- * Created by yura on 4/8/17.
- */
-public interface AutomobileManufacturerDao {
-    AutomobileManufacturer save(AutomobileManufacturer automobileManufacturer);
-    AutomobileManufacturer getByName(String name);
-    List<AutomobileManufacturer> findAll();
-    int update(AutomobileManufacturer automobileManufacturer);
+@Repository
+public interface AutomobileManufacturerDao extends PagingAndSortingRepository<AutomobileManufacturer, Integer> {
+    AutomobileManufacturer findByName(String name);
 }

@@ -1,32 +1,30 @@
 package com.yuraloga.ecarservice.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import java.sql.Blob;
+import javax.persistence.*;
+import java.io.Serializable;
 
-/**
- * Created by yura on 4/1/17.
- */
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Data
-public class Photo {
+@Entity
+@EqualsAndHashCode(exclude = {"photoSet"})
+@ToString(exclude = {"content", "photoSet"})
+public class Photo implements Serializable {
+    @Id
     private Integer id;
-    private Integer photoSetId;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "photoset_id",
+        referencedColumnName = "id"
+    )
+    private PhotoSet photoSet;
     private String name;
-    private Blob content;
+    private byte[] content;
     private String imageUrl;
-
-    public Photo(Integer id, Integer photoSetId, String name, Blob content, String imageUrl) {
-        this.id = id;
-        this.photoSetId = photoSetId;
-        this.name = name;
-        this.content = content;
-        this.imageUrl = imageUrl;
-    }
-
-    public Photo(Integer photoSetId, String name, Blob blob, String imageUrl) {
-        this.photoSetId = photoSetId;
-        this.name = name;
-        this.content = blob;
-        this.imageUrl = imageUrl;
-    }
 }

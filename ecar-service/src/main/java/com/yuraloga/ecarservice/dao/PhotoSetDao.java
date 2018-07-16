@@ -1,13 +1,9 @@
 package com.yuraloga.ecarservice.dao;
 
 import com.yuraloga.ecarservice.model.PhotoSet;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-/**
- * Created by yura on 4/6/17.
- */
-public interface PhotoSetDao {
-    PhotoSet save(PhotoSet photoSet);
-    List<PhotoSet> getById(long id);
+@Repository
+public interface PhotoSetDao extends PagingAndSortingRepository<PhotoSet, Integer> {
 }

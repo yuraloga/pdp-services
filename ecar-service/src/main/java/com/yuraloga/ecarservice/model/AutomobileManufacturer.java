@@ -1,23 +1,22 @@
 package com.yuraloga.ecarservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-/**
- * Created by yura on 4/1/17.
- */
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+import javax.persistence.*;
+import java.io.Serializable;
+
+@JsonIgnoreProperties("hibernateLazyInitializer")
 @Data
-public class AutomobileManufacturer {
+@Entity
+public class AutomobileManufacturer implements Serializable {
+    @Id
     private Integer id;
     private String name;
-    private Integer logoId;
-
-    public AutomobileManufacturer(String name) {
-        this.name = name;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "logo_id",
+        referencedColumnName = "id"
+    )
+    private AutomobileManufacturerLogo automobileManufacturerLogo;
 }

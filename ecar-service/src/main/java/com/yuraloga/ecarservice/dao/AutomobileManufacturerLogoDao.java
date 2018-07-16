@@ -1,13 +1,9 @@
 package com.yuraloga.ecarservice.dao;
 
 import com.yuraloga.ecarservice.model.AutomobileManufacturerLogo;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-/**
- * Created by yura on 4/19/17.
- */
-public interface AutomobileManufacturerLogoDao {
-    AutomobileManufacturerLogo save(AutomobileManufacturerLogo automobileManufacturerLogo);
-    List<AutomobileManufacturerLogo> findAll();
+@Repository
+public interface AutomobileManufacturerLogoDao extends PagingAndSortingRepository<AutomobileManufacturerLogo, Integer> {
 }
