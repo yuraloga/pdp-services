@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -22,5 +24,12 @@ public class CarSpecificationServiceImpl implements CarSpecificationService {
         log.debug("Finding car specification by id: {}", id);
         return carSpecificationDao.findById(id)
                 .orElseThrow(() -> new NotFoundException(CAR_SPECIFICATION_WAS_NOT_FOUND_MESSAGE));
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<CarSpecification> getCarSpecificationByModelNameStartingWith(String modelName) {
+        log.debug("Finding car specifications by modelName: {}", modelName);
+        return carSpecificationDao.findByModelNameStartingWith(modelName);
     }
 }

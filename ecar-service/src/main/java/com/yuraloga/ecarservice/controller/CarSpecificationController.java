@@ -5,9 +5,9 @@ import com.yuraloga.ecarservice.service.CarSpecificationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -18,6 +18,14 @@ public class CarSpecificationController {
     public ResponseEntity<CarSpecification> getCarSpecification(@PathVariable Integer id) {
         return new ResponseEntity<>(
                 carSpecificationService.getCarSpecification(id),
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping("/car-specification")
+    public ResponseEntity<List<CarSpecification>> getCarSpecifications(@RequestParam("modelName") String modelName) {
+        return new ResponseEntity<>(
+                carSpecificationService.getCarSpecificationByModelNameStartingWith(modelName),
                 HttpStatus.OK
         );
     }

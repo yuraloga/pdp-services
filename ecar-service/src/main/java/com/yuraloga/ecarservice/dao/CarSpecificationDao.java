@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CarSpecificationDao extends PagingAndSortingRepository<CarSpecification, Integer> {
     List<CarSpecification> findByModelName(String modelName);
+    List<CarSpecification> findByModelNameStartingWith(String modelName);
 }
