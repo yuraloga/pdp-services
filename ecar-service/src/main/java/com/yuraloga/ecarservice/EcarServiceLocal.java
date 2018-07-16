@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /*
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     -Dspring.jpa.hibernate.dialect=com.yuraloga.ecarservice.configuration.CustomPostgreSQLDialect
     -Dspring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
  */
+@EnableSpringDataWebSupport
 @EnableTransactionManagement
 @EnableJpaRepositories
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
