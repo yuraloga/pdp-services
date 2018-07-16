@@ -1,5 +1,6 @@
 package com.yuraloga.ecarservice.controller;
 
+import com.yuraloga.ecarservice.controller.request.CarSpecificationRequest;
 import com.yuraloga.ecarservice.model.CarSpecification;
 import com.yuraloga.ecarservice.service.CarSpecificationService;
 import lombok.AllArgsConstructor;
@@ -23,9 +24,9 @@ public class CarSpecificationController {
     }
 
     @PostMapping("/car-specification")
-    public ResponseEntity<List<CarSpecification>> getCarSpecifications(@RequestParam("modelName") String modelName) {
+    public ResponseEntity<List<CarSpecification>> getCarSpecifications(@RequestBody CarSpecificationRequest request) {
         return new ResponseEntity<>(
-                carSpecificationService.getCarSpecificationByModelNameStartingWith(modelName),
+                carSpecificationService.getCarSpecifications(request),
                 HttpStatus.OK
         );
     }

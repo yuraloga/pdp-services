@@ -1,5 +1,6 @@
 package com.yuraloga.ecarservice.service;
 
+import com.yuraloga.ecarservice.controller.request.CarSpecificationRequest;
 import com.yuraloga.ecarservice.dao.CarSpecificationDao;
 import com.yuraloga.ecarservice.exceptions.NotFoundException;
 import com.yuraloga.ecarservice.model.CarSpecification;
@@ -31,5 +32,12 @@ public class CarSpecificationServiceImpl implements CarSpecificationService {
     public List<CarSpecification> getCarSpecificationByModelNameStartingWith(String modelName) {
         log.debug("Finding car specifications by modelName: {}", modelName);
         return carSpecificationDao.findByModelNameStartingWith(modelName);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<CarSpecification> getCarSpecifications(CarSpecificationRequest request) {
+        log.debug("Finding car specifications by request: {}", request);
+        return carSpecificationDao.find(request);
     }
 }
