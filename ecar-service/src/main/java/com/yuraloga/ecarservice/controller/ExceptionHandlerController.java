@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.validation.ValidationException;
+
 @Slf4j
 @ControllerAdvice
 public class ExceptionHandlerController {
@@ -15,6 +17,18 @@ public class ExceptionHandlerController {
     public ResponseEntity<String> handleException(Throwable t) {
         log.error("Error: {}", t.getMessage());
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler({NumberFormatException.class})
+    public ResponseEntity<String> handleFormatException(NumberFormatException nfe) {
+        log.error("Error: {}", nfe.getMessage());
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<String> handleValidationException(ValidationException ve) {
+        log.error("Validation Error: {}", ve.getMessage());
+        return new ResponseEntity<>(ve.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotFoundException.class)
