@@ -7,6 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * Values parsed from website.
+ * Most of the values have <code>String</code> type
+ */
 @JsonIgnoreProperties("hibernateLazyInitializer")
 @Data
 @Entity
