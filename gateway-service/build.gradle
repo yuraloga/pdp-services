@@ -40,3 +40,14 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
+
+jar {
+	baseName = project.name
+	version =  project.version
+	manifest {
+		attributes(
+				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+				'Main-Class': 'com.yuraloga.gatewayservice.GatewayServiceApplication'
+		)
+	}
+}

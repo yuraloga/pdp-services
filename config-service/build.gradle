@@ -42,6 +42,12 @@ dependencyManagement {
 jar {
 	baseName = project.name
 	version =  project.version
+	manifest {
+		attributes(
+				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+				'Main-Class': 'com.yuraloga.configservice.ConfigServiceApplication'
+		)
+	}
 }
 
 task fatJar(type: Jar) {

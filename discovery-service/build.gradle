@@ -43,11 +43,17 @@ dependencyManagement {
 jar {
 	baseName = project.name
 	version =  project.version
+	manifest {
+		attributes(
+				'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+				'Main-Class': 'com.yuraloga.discovery.DiscoveryServiceApplication'
+		)
+	}
 }
 
 task fatJar(type: Jar) {
 	manifest {
-		attributes 'Main-Class': 'com.yuraloga.configservice.ConfigServiceApplication'
+		attributes 'Main-Class': 'com.yuraloga.discovery.DiscoveryServiceApplication'
 	}
 	baseName = project.name
 	from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
